@@ -1,0 +1,6 @@
+pandas
+datasets
+pytest
+fastapi
+uvicorn
+

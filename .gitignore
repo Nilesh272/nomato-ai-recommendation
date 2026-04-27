@@ -1,0 +1,12 @@
+.env
+.hf_cache/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node / Next
+node_modules/
+.next/

@@ -1,0 +1,13 @@
+{
+  "run_id": "bc965212-88d3-46c0-ad2d-d6f03d9ba438",
+  "status": "success",
+  "report": {
+    "total_rows": 51717,
+    "valid_rows": 12519,
+    "missing_name_or_city": 21,
+    "invalid_rating_rows": 0,
+    "invalid_cost_rows": 0,
+    "duplicate_rows": 39187
+  },
+  "source_fingerprint": "b877a47fd53ddd06"
+}

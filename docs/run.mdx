@@ -1,0 +1,67 @@
+# Run frontend + backend (local)
+
+## One-time setup
+
+From the repo root:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+For the Next.js frontend:
+
+```bash
+cd frontend/web
+cp .env.local.example .env.local
+npm install
+```
+
+## Run backend (FastAPI – Phase 6 production API)
+
+From the repo root:
+
+```bash
+source .venv/bin/activate
+uvicorn phases.phase6_production_readiness.backend.main:app --reload --port 8001
+```
+
+Open:
+- `http://127.0.0.1:8000/docs`
+
+## Run frontend (Next.js)
+
+From the repo root:
+
+```bash
+cd frontend/web
+ulimit -n 65536
+WATCHPACK_POLLING=true npm run dev
+```
+
+Open:
+- `http://127.0.0.1:3000`
+
+## Run “basic UI” (optional)
+
+This is a lightweight end-to-end UI that calls the production endpoint.
+
+From the repo root:
+
+```bash
+source .venv/bin/activate
+uvicorn frontend.basic_ui.app:app --reload --port 8000
+```
+
+Open:
+- `http://127.0.0.1:8000/`
+
+## Stop servers
+
+In each terminal running a server, press:
+
+```bash
+Ctrl+C
+```
+
