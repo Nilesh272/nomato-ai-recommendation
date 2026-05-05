@@ -44,7 +44,10 @@ def test_phase6_cache_hit(monkeypatch) -> None:
             ],
         )
 
-    monkeypatch.setattr("phases.phase6_production_readiness.backend.api.routes.rank_with_llm", _fake_rank)
+    monkeypatch.setattr(
+        "phases.phase6_production_readiness.backend.services.production_pipeline.rank_with_llm",
+        _fake_rank,
+    )
     r1 = client.post("/api/v1/recommendations/production", json=_payload("cache-user"))
     r2 = client.post("/api/v1/recommendations/production", json=_payload("cache-user"))
     assert r1.status_code == 200
@@ -63,7 +66,10 @@ def test_phase6_rate_limit(monkeypatch) -> None:
     def _fake_rank(_payload):
         return RankResponse(message="ok", fallback_used=True, shortlist_count=0, recommendations=[])
 
-    monkeypatch.setattr("phases.phase6_production_readiness.backend.api.routes.rank_with_llm", _fake_rank)
+    monkeypatch.setattr(
+        "phases.phase6_production_readiness.backend.services.production_pipeline.rank_with_llm",
+        _fake_rank,
+    )
     first = client.post("/api/v1/recommendations/production", json=_payload("limited-user"))
     second = client.post("/api/v1/recommendations/production", json=_payload("limited-user"))
     routes.limiter.max_requests = original

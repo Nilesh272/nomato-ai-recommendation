@@ -3,4 +3,6 @@ datasets
 pytest
 fastapi
 uvicorn
+requests
+streamlit
 

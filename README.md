@@ -20,8 +20,20 @@ pip install -r requirements.txt
 
 - `phases/phase1_data_ingestion/`: dataset ETL, cleaning, validation, SQLite loading
 - `phases/phase2_user_input_api/`: FastAPI service for preference intake and normalization
+- `streamlit_app/`: Streamlit deployment for the Phase 6 production pipeline (same logic as FastAPI)
 - `tests/phase1/`: Phase 1 unit tests
 - `tests/phase2/`: Phase 2 API tests
+
+## Architecture
+
+### Deployment
+
+- **Backend:** [Streamlit](https://streamlit.io) (for example [Streamlit Community Cloud](https://streamlit.io/cloud) or self-hosted), where the Python-side recommendation and serving logic runs.
+- **Frontend:** [Vercel](https://vercel.com), deploying the Next.js app under `frontend/web`.
+
+On [Streamlit Community Cloud](https://streamlit.io/cloud), set the app’s main file to `streamlit_app/app.py`, install dependencies from `requirements.txt`, and add **Secrets** for `GROQ_API_KEY` (optional: `GROQ_MODEL`, `GROQ_BASE_URL`). The app reads `phases/phase1_data_ingestion/data_pipeline/zomato.db`; build it with Phase 1 ETL or supply the file in the deployment environment.
+
+The Next.js app’s `NEXT_PUBLIC_API_BASE` targets a **REST** service (`POST /api/v1/recommendations/production`). Use the Phase 6 FastAPI app for that, or another HTTP host; Streamlit serves the Python stack through the Streamlit UI, not as that JSON endpoint.
 
 ## Run Phase 1 ETL
 
@@ -84,6 +96,14 @@ uvicorn phases.phase6_production_readiness.backend.main:app --reload
 Phase 6 endpoints:
 - `POST /api/v1/recommendations/production`
 - `GET /api/v1/metrics`
+
+## Run Streamlit (production backend)
+
+Uses the same production pipeline as Phase 6 (`run_production_recommendation`). For local secrets, use a root `.env` with `GROQ_API_KEY` (as used by the Groq client) or configure [Streamlit secrets](https://docs.streamlit.io/develop/concepts/connections/secrets-management).
+
+```bash
+streamlit run streamlit_app/app.py
+```
 
 ## Run Basic End-to-End UI
 

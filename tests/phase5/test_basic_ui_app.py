@@ -17,7 +17,7 @@ def test_ui_home_page_loads() -> None:
 
 
 def test_ui_backend_route_with_mock(monkeypatch) -> None:
-    from phases.phase6_production_readiness.backend.api import routes
+    _pp = "phases.phase6_production_readiness.backend.services.production_pipeline"
 
     def _fake_format(_payload, _rank_response):
         return PresentationResponse(
@@ -38,10 +38,9 @@ def test_ui_backend_route_with_mock(monkeypatch) -> None:
             empty_state_suggestions=[EmptyStateSuggestion(suggestion="none")],
         )
 
-    monkeypatch.setattr(routes, "format_for_presentation", _fake_format)
+    monkeypatch.setattr(f"{_pp}.format_for_presentation", _fake_format)
     monkeypatch.setattr(
-        routes,
-        "rank_with_llm",
+        f"{_pp}.rank_with_llm",
         lambda _payload: type("R", (), {"fallback_used": False, "recommendations": [1]})(),
     )
 
