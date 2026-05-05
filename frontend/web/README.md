@@ -33,4 +33,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
+### Project env (required)
+
+Set this environment variable in Vercel:
+
+- **`NEXT_PUBLIC_API_BASE`**: `https://nomato-ai-recommendation-ck8fgjacxwltvvryjdfurl.streamlit.app`
+
+This app calls the backend via the Next.js route handler at `POST /api/recommendations`, which forwards to:
+
+- `POST ${NEXT_PUBLIC_API_BASE}/api/v1/recommendations/production`
+
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -5,15 +5,25 @@ const API_BASE =
 
 export async function POST(req: Request) {
   const body = await req.text();
-  const resp = await fetch(`${API_BASE}/api/v1/recommendations/production`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body,
-  });
-  const text = await resp.text();
-  return new NextResponse(text, {
-    status: resp.status,
-    headers: { "Content-Type": resp.headers.get("Content-Type") || "application/json" },
-  });
+  const url = new URL("/api/v1/recommendations/production", API_BASE).toString();
+
+  try {
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+    const text = await resp.text();
+    return new NextResponse(text, {
+      status: resp.status,
+      headers: { "Content-Type": resp.headers.get("Content-Type") || "application/json" },
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "unknown error";
+    return NextResponse.json(
+      { detail: `Failed to reach backend at ${url}: ${msg}` },
+      { status: 502 },
+    );
+  }
 }
 
