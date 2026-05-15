@@ -39,26 +39,13 @@ export function ZHeader() {
               nomato
             </div>
             <div className="mt-0.5 hidden text-[11px] font-medium text-zinc-500 sm:block">
-              Discover • Order • Dine
+              AI Restaurant Recommendation System
             </div>
           </div>
         </div>
 
         <NavigationMenu.Root className="hidden md:block">
           <NavigationMenu.List className="flex items-center gap-2">
-            <NavigationMenu.Item>
-              <NavLink href="#">Investor Relations</NavLink>
-            </NavigationMenu.Item>
-            <NavigationMenu.Item>
-              <NavLink href="#">Add restaurant</NavLink>
-            </NavigationMenu.Item>
-
-            <Separator.Root
-              decorative
-              orientation="vertical"
-              className="mx-1 h-6 w-px bg-zinc-200"
-            />
-
             <NavigationMenu.Item>
               <NavLink href="#">Log in</NavLink>
             </NavigationMenu.Item>
