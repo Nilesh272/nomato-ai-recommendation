@@ -1,5 +1,7 @@
 # Zomato First Project
 
+![Nomato AI Restaurant Recommendation System](https://res.cloudinary.com/dc1wq21mk/image/upload/q_auto/f_auto/v1778840723/Screenshot_2026-05-15_at_3.50.47_PM_enclkx.png)
+
 Implemented phases:
 - Phase 1: data ingestion and modeling
 - Phase 2: user input API contract, validation, and normalization
