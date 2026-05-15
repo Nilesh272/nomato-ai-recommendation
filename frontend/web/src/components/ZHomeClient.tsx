@@ -2,9 +2,6 @@
 
 import { ZHeader } from "@/components/ZHeader";
 import { ZHero } from "@/components/ZHero";
-import { ZCategoryCards } from "@/components/ZCategoryCards";
-import { ZLocalities } from "@/components/ZLocalities";
-import { ZExplore } from "@/components/ZExplore";
 import { ZFooter } from "@/components/ZFooter";
 import { ZSearchProvider, ZSearchResults } from "@/components/ZSearch";
 
@@ -15,9 +12,6 @@ export function ZHomeClient() {
         <ZHeader />
         <ZHero />
         <ZSearchResults />
-        <ZCategoryCards />
-        <ZLocalities />
-        <ZExplore />
         <ZFooter />
       </div>
     </ZSearchProvider>
